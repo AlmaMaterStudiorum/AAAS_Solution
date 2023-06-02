@@ -13,3 +13,10 @@ alphatheta = 1e-3
 alphaw = 1e-3
 
 NNFolder = r"D:\Data\Temp\NN"
+
+epsilon = 10*1e-2
+
+SaveNets = False
+
+#AtariName = "Taxi-v3"
+AtariName = "FrozenLake-v1"

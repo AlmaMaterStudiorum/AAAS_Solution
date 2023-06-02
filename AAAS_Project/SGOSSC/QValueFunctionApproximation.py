@@ -59,6 +59,7 @@ class QValueFunctionApproximation(nn.Module):
         #                  nn.ReLU()
         #                  )
 
+        # It appears that grad doen's work with Relu
         self.model =   nn.Sequential(
                     nn.Linear(observation_space_size, action_space_size*(2**2)),
                     nn.Linear(action_space_size*(2**2), action_space_size*(2**1)),
