@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>85bd3a52-e7a5-445e-9de4-e48c25612262</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RunAtariBoxing.py</StartupFile>
+    <StartupFile>FrozenLake.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,14 +21,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AAAS_Project.py" />
-    <Compile Include="Hyperparameters.py" />
-    <Compile Include="Parameters.py" />
-    <Compile Include="Policy.py" />
-    <Compile Include="QValueFunctionApproximation.py" />
-    <Compile Include="RunAtariAlien.py" />
-    <Compile Include="RunAtariBoxing.py" />
-    <Compile Include="SemiGradientOneStepSarsaControl.py" />
+    <Compile Include="FrozenLake.py" />
+    <Compile Include="SGOSSC\Hyperparameters.py" />
+    <Compile Include="SGOSSC\Parameters.py" />
+    <Compile Include="SGOSSC\Policy.py" />
+    <Compile Include="SGOSSC\QValueFunctionApproximation.py" />
+    <Compile Include="SGOSSC\RunAtari.py" />
+    <Compile Include="SGOSSC\RunAtariAlien.py" />
+    <Compile Include="SGOSSC\RunAtariBoxing.py" />
+    <Compile Include="SGOSSC\SemiGradientOneStepSarsaControl.py" />
+    <Compile Include="ToyText\Colab.py" />
+    <Compile Include="ToyText\ToyText.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ToyText\" />
+    <Folder Include="SGOSSC\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

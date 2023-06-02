@@ -32,7 +32,7 @@ import json
 
 
 
-epsilon = 10*1e-2
+
 class EncodeTensor(JSONEncoder,Dataset):
     def default(self, obj):
         if isinstance(obj, torch.Tensor):
@@ -156,17 +156,10 @@ def sgosscOnAtari(env,policytype,observation_space_size,action_space_size,frame)
                     qv = fa.forward(state_t_1)
                     array_action_value_t.append( qv )
             
-                if policytype == 0:
-                    action_t_1,q_action_value_t_1 = policy.getActionAndValueFromStocasticPolicyV2(array_action_value_t)
-                elif policytype == 1:
-                    action_t_1,q_action_value_t_1 = policy.getActionAndValueFromGreedyPolicy(array_action_value_t)
-                elif policytype == 2:
-                    action_t_1,q_action_value_t_1 = policy.getActionAndValueFromEpsilonGreedyPolicy(array_action_value_t,epsilon)
+                if policytype == 2:
+                    action_t_1,q_action_value_t_1 = policy.getActionAndValueFromEpsilonGreedyPolicy(array_action_value_t,Parameters.epsilon)
                 elif policytype == 3:
                     action_t_1,q_action_value_t_1 = policy.getActionAndValueFromSoftmaxPolicy(array_action_value_t)
-                elif policytype == 4:
-                    step_counter =  step_counter + 1 
-                    action_t_1,q_action_value_t_1 = policy.getActionAndValueFromDecresingEpsilonGreedyPolicy(array_action_value_t,epsilon,step_counter)
 
                 # t = q_action_value_t
                 # q_action_value_t_1.requires_grad = False
@@ -246,25 +239,14 @@ def sgosscOnAtari(env,policytype,observation_space_size,action_space_size,frame)
                 break
 
         # end of episode
-        if False :
-            for x in range(action_space_size):
-
-                filename = "Boxing" + str(episode) + "_" + str(x) + ".nn"
-                result = os.path.join(r"D:\Data\Temp\NN", filename)
-                torch.save(funtionapproximations[x].state_dict(), result)
 
 
-        if True :
+        if Parameters.SaveNets == True :
             for x in range(action_space_size):
                 filename = "Boxing" + str(episode) + "_" + str(x) + ".json"
                 result = os.path.join(Parameters.NNFolder, filename)
                 with open(result, 'w') as json_file:
                     json.dump(funtionapproximations[x].state_dict(), json_file,cls=EncodeTensor)
-
-
-
-
-
           
      # Plot results
      smoothed_rewards = pd.Series.rolling(pd.Series(list_of_rewards_of_all_episodes), 10).mean()
